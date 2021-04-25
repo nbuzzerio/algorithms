@@ -26,12 +26,19 @@ Constraints:
 */
 
 var canJump = function(nums) {
-    if (nums.length === 1) return true;
-    if (nums[0] === 0) return false;
-    let personalBest = nums.length-1;
-    for (let i = nums.length - 1; i >= 0; i--) {
-        if (i+nums[i] >= personalBest) personalBest = i;
+    for (let i = 0; i < nums.length; i+= nums[i]) {
+        if (i === nums.length - 1) return true;
+
+        if (nums[i] === 0) {
+            for (let j = i; j >= 0; j--) {
+                if (j + nums[j] > i) {
+                     i = j + nums[j];
+                     break;
+                }
+
+                if (j === 0) return false;
+            }
+        }
     }
-    if (personalBest <= 1) return true;
-    return false;
+    return true;
 };
