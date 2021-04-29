@@ -24,27 +24,21 @@ Each string does not contain leading zeros except for the zero itself.
  * @return {string}
  */
 var addBinary = function (a, b) {
-  let arr;
-  if (a.length > b.length) {
-    arr = new Array(a.length - b.length);
-    b = arr.fill("0").join("") + b;
-  } else if (b.length > a.length) {
-    arr = new Array(b.length - a.length);
-    a = arr.fill("0").join("") + a;
-  }
+  let longest = a.length;
+  if (b.length > a.length) longest = b.length;
 
   let carry = false;
   let results = "";
 
-  for (let i = a.length - 1; i >= 0; i--) {
-    if (a[i] === "1" && b[i] === "1") {
+  for (let i = 1; i <= longest; i++) {
+    if (a[a.length - i] === "1" && b[b.length - i] === "1") {
       if (carry === true) {
         results = "1" + results;
       } else {
         results = "0" + results;
       }
       carry = true;
-    } else if (a[i] === "1" || b[i] === "1") {
+    } else if (a[a.length - i] === "1" || b[b.length - i] === "1") {
       if (carry === true) {
         results = "0" + results;
       } else {
