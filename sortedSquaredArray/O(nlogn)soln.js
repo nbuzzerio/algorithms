@@ -10,3 +10,5 @@ function sortedSquaredArray(array) {
     });
   else return squared;
 }
+
+//O(nlogn) time | O(n) space
